@@ -17,7 +17,7 @@ $db_iblock = CIBlock::GetList(
 );
 while ($arRes = $db_iblock->Fetch()) {
     $arIBlocks[$arRes["ID"]] = "[" . $arRes["ID"] . "] " . $arRes["NAME"];
-    $arIBlocks[$arRes["CODE"]] = "[" . $arRes["CODE"] . "] " . $arRes["NAME"];
+    $arIBlocksCode[$arRes["CODE"]] = "[" . $arRes["CODE"] . "] " . $arRes["NAME"];
 }
 
 
@@ -36,16 +36,16 @@ $arComponentParameters = array(
         'IBLOCK_ID' => array(
             'PARENT' => 'BASE',
             'NAME' => 'ID Инфоблока',
-            'TYPE' => 'TEXT',
+            'TYPE' => 'LIST',
             'ADDITIONAL_VALUES' => 'Y',
-            'VALUES' => '',
+            'VALUES' => $arIBlocks,
             'REFRESH' => 'N',
         ),
         "IBLOCK_CODE" => array(
             "PARENT" => "BASE",
             "NAME" => 'Код Инфоблока',
-            "TYPE" => "TEXT",
-            "VALUES" => $arIBlocks,
+            "TYPE" => "LIST",
+            "VALUES" => $arIBlocksCode,
             "DEFAULT" => '={$_REQUEST["ID"]}',
             "ADDITIONAL_VALUES" => "Y",
             "REFRESH" => "Y",

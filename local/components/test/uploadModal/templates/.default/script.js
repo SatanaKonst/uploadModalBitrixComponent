@@ -26,7 +26,7 @@ BX.ready(function () {
             ).then(
                 (response) => {
                     if (response.status === "success" && response.data.result === true) {
-                        e.currentTarget.reset();
+                        document.querySelector('form#uploadModalForm').reset();
                         showInfo('Данные успешно отправлены', ['alert', 'alert-success'], true);
                     } else {
                         throw ('Ошибка сохранения данных');
